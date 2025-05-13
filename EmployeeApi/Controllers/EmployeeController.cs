@@ -32,10 +32,10 @@ namespace EmployeeApi.Controllers
 
         [HttpPut]
         [Route("UpdateEmployee/{id}")]
-        public ActionResult UpdateEmployee(string id, [FromBody]Employee employee)
+        public ActionResult UpdateEmployee(string id, [FromBody] Employee employee)
         {
             using EmployeeContext context = new EmployeeContext();
-            Employee originalEmployee = context.Employees.FirstOrDefault(x => x.Id.Equals(id));
+            Employee? originalEmployee = context.Employees.FirstOrDefault(x => x.Id.Equals(id));
             if (originalEmployee == null)
                 return BadRequest("ID not found");
             if (employee.Id != id)
@@ -52,7 +52,7 @@ namespace EmployeeApi.Controllers
         public ActionResult DeleteEmployee(string id)
         {
             using EmployeeContext context = new EmployeeContext();
-            Employee originalEmployee = context.Employees.FirstOrDefault(x => x.Id.Equals(id));
+            Employee? originalEmployee = context.Employees.FirstOrDefault(x => x.Id.Equals(id));
             if (originalEmployee == null)
                 return BadRequest("ID not found");
 
